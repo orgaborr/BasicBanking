@@ -23,8 +23,21 @@ public class Branch {
 		}
 	}
 	
-	+listCustomers: void
-		optionally list transactions as well
+	public void listTransactions(Customer customer) {
+		for(int i=0; i<customer.getTransactions().size(); i++) {
+			System.out.println((i+1) + ". $" + customer.getTransactions().get(i));
+		}
+		System.out.println("Current balance is = $" + customer.getBalance());
+	}
 	
+	public void listCustomers() {
+		for(int i=0; i<customers.size(); i++) {
+			System.out.println((i+1) + ". " + customers.get(i).getName());
+		}
+	}
+
+	public ArrayList<Customer> getCustomers() {
+		return customers;
+	}
 	
 }

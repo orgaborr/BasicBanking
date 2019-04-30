@@ -11,12 +11,7 @@ public class Customer {
 	}
 	
 		
-	public void listTransactions() {
-		for(int i=0; i<transactions.size(); i++) {
-			System.out.println((i+1) + ". $" + transactions.get(i));
-		}
-		System.out.println("Current balance is = $" + balance);
-	}
+	
 	
 	public void setBalance(double balance) {
 		this.balance = balance;
