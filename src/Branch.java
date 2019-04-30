@@ -3,36 +3,43 @@ import java.util.ArrayList;
 public class Branch {
 	private ArrayList<Customer> customers = new ArrayList<Customer>();
 	
-	public void addCustomer(Customer customer) {
-		customers.add(customer);
-		System.out.println("Customer account of " + customer.getName() + " has been successfully created \nwith an initial transaction of $" + customer.getBalance());
-	}
-	
-	public void addTransaction(Customer customer, double amount) {
-		if(amount == 0) {
-			System.out.println("Invalid transaction of value $0.0.");
-		}
-		if(amount < 0) {
-			if(Math.abs(amount) > customer.getBalance()) {
-				System.out.println("Insufficient funds. Current balance is = $" + customer.getBalance());
+	public void addCustomer(String name, double initialTransaction) {
+		for(int i=0; i<customers.size(); i++) {
+			if(customers.get(i).getName().equals(name)) {
+				System.out.println("Customer already exists.");
+			} else {
+				Customer customer = new Customer(name, initialTransaction);
+				customers.add(customer);
+				System.out.println("Customer account of " + customer.getName() + " has been successfully created \nwith an initial transaction of $" + customer.getBalance());
 			}
-		} else {
-			customer.getTransactions().add(amount);
-			customer.setBalance(customer.getBalance() + amount);
-			System.out.println("Transaction successful. Current balance is = $" + customer.getBalance());
-		}
+		} 
 	}
 	
-	public void listTransactions(Customer customer) {
-		for(int i=0; i<customer.getTransactions().size(); i++) {
-			System.out.println((i+1) + ". $" + customer.getTransactions().get(i));
+	public void addTransaction(String name, double amount) {
+		for(int i=0; i<customers.size(); i++) {
+			if(customers.get(i).getName().equals(name)) {
+				if(amount == 0) {
+					System.out.println("Invalid transaction of value $0.0.");
+				}
+				if(amount < 0) {
+					if(Math.abs(amount) > customers.get(i).getBalance()) {
+						System.out.println("Insufficient funds. Current balance is = $" + customers.get(i).getBalance());
+					}
+				} else {
+					customers.get(i).getTransactions().add(amount);
+					customers.get(i).setBalance(customers.get(i).getBalance() + amount);
+					System.out.println("Transaction successful. Current balance is = $" + customers.get(i).getBalance());
+				}
+			} else {
+				System.out.println("Customer not found.");
+			}
 		}
-		System.out.println("Current balance is = $" + customer.getBalance());
 	}
 	
 	public void listCustomers() {
 		for(int i=0; i<customers.size(); i++) {
 			System.out.println((i+1) + ". " + customers.get(i).getName());
+			customers.get(i).listTransactions();
 		}
 	}
 
