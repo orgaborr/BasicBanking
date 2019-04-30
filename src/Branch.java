@@ -1,7 +1,12 @@
 import java.util.ArrayList;
 
 public class Branch {
+	private String name;
 	private ArrayList<Customer> customers = new ArrayList<Customer>();
+	
+	public Branch(String name) {
+		this.name = name;
+	}
 	
 	public void addCustomer(String name, double initialTransaction) {
 		for(int i=0; i<customers.size(); i++) {
@@ -41,6 +46,10 @@ public class Branch {
 			System.out.println((i+1) + ". " + customers.get(i).getName());
 			customers.get(i).listTransactions();
 		}
+	}
+	
+	public String getName() {
+		return name;
 	}
 
 	public ArrayList<Customer> getCustomers() {
