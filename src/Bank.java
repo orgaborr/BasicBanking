@@ -18,8 +18,6 @@ public class Bank {
 		}
 	}
 	
-	
-	
 	private boolean branchExists(String name) {
 		for(int i=0; i<branches.size(); i++) {
 			if(branches.get(i).getName().equals(name)) {
@@ -31,7 +29,7 @@ public class Bank {
 	
 	public void listBranches() {
 		for(int i=0; i<branches.size(); i++) {
-			System.out.println((i+1) + ". " + branches.get(i));
+			System.out.println((i+1) + ". " + branches.get(i).getName());
 		}
 	}
 	
