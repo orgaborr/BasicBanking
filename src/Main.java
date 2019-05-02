@@ -7,9 +7,10 @@ public class Main {
 	public static void main(String[] args) {
 		boolean quit = false;
 		int choice = 0;
+		listOptions();
+		
 		while(!quit) {
-			System.out.println("Enter your choice: ");
-			listOptions();
+			System.out.println("\nEnter your choice: ");
 			choice = sc.nextInt();
 			sc.nextLine();
 			
@@ -22,6 +23,7 @@ public class Main {
 				break;
 			case 2:
 				bank.listBranches();
+				break;
 			case 3:
 				listCustomers();
 				break;
@@ -56,7 +58,8 @@ public class Main {
 	}
 	
 	public static void listCustomers() {
-		chooseBranch().listCustomers();
+		Branch branch = chooseBranch();
+		branch.listCustomers();
 	}
 	
 	public static void addCustomer() {
@@ -82,7 +85,7 @@ public class Main {
 	private static Branch chooseBranch() {
 		System.out.println("Please choose a branch: ");
 		bank.listBranches();
-		Branch branch = bank.getBranches().get(sc.nextInt());
+		Branch branch = bank.getBranches().get(sc.nextInt()-1);
 		sc.nextLine();
 		return branch;
 	}

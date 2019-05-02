@@ -15,6 +15,7 @@ public class Branch {
 			} else {
 				Customer customer = new Customer(name, initialTransaction);
 				customers.add(customer);
+				customer.getTransactions().add(initialTransaction);
 				System.out.println("Customer account of " + customer.getName() + " has been successfully created \nwith an initial transaction of $" + customer.getBalance());
 			}
 		} 
