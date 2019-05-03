@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Customer {
 	private String name;
 	private ArrayList<Double> transactions = new ArrayList<Double>();
+	private double balance;
 	
 	public Customer(String name, double initialTransaction) {
 		this.name = name;
@@ -10,8 +11,15 @@ public class Customer {
 	}
 	
 	public void addTransaction(double amount) {
-		transactions.add(amount);
-		System.out.println("Transaction of $" + amount + " was successfully made");
+		if(amount < 0) {
+			if(balance < Math.abs(amount)) {
+				System.out.println("Insufficient funds");
+			}
+		} else {
+			transactions.add(amount);
+			balance += amount;
+			System.out.println("Transaction of $" + amount + " was successfully made");
+		}
 	}
 	
 	public void listTransactions() {
@@ -26,6 +34,10 @@ public class Customer {
 
 	public ArrayList<Double> getTransactions() {
 		return transactions;
+	}
+	
+	public double getBalance() {
+		return balance;
 	}
 
 }
