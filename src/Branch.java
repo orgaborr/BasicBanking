@@ -9,7 +9,7 @@ public class Branch {
 	}
 	
 	public boolean addCustomer(String name, double initialTransaction) {
-		if(findCustomer(name) >= 0) {
+		if(findCustomer(name) < 0) {
 			customers.add(new Customer(name, initialTransaction));
 			return true;
 		}

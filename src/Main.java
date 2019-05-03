@@ -3,12 +3,22 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		Customer customer = new Customer("Gabor", 100.50);
-		customer.listTransactions();
+		Branch budapest = new Branch("Budapest");
 		
-		customer.addTransaction(130.45);
-		customer.listTransactions();
-		System.out.println("Current balance is $" + customer.getBalance());
+		budapest.addCustomer("Gabor", 100.50);
+		budapest.addCustomer("Joe", 140.45);
+		budapest.addCustomer("Bob", 39.99);
+		
+		budapest.listCustomers(true);
+		
+		budapest.addTransaction("Gabor", 141.0);
+		budapest.addTransaction("Joe", 12.89);
+		budapest.addTransaction("Gabor", -87.2);
+		
+		budapest.listCustomers(true);
+		
+		budapest.addCustomer("Bob", 123.45);
+		
 	}
 
 }
