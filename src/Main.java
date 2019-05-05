@@ -2,22 +2,29 @@
 public class Main {
 	
 	public static void main(String[] args) {
+		Bank bank = new Bank("UniCredit");
 		
-		Branch budapest = new Branch("Budapest");
+		bank.addBranch("Budapest");
 		
-		budapest.addCustomer("Gabor", 100.50);
-		budapest.addCustomer("Joe", 140.45);
-		budapest.addCustomer("Bob", 39.99);
+		bank.addCustomer("Budapest","Gabor", 87.65);
+		bank.addCustomer("Budapest","Joe", 105.87);
+		bank.addCustomer("Budapest","Bob", 12.09);
 		
-		budapest.listCustomers(true);
+		bank.listCustomers("Budapest", false);
 		
-		budapest.addTransaction("Gabor", 141.0);
-		budapest.addTransaction("Joe", 12.89);
-		budapest.addTransaction("Gabor", -87.2);
+		bank.addTransaction("Budapest", "Gabor", 152.12);
+		bank.listCustomers("Budapest", true);
 		
-		budapest.listCustomers(true);
+		bank.addTransaction("Budapest", "Joe", -201.1);
+		bank.listCustomers("Budapest", true);
 		
-		budapest.addCustomer("Bob", 123.45);
+		bank.addBranch("Budapest");
+		
+		bank.addTransaction("Budapest", "Frank", 13.13);
+		bank.listCustomers("Budapest", true);
+		
+		bank.addCustomer("Budapest", "Gabor", 1331.12);
+		bank.listCustomers("Budapest", false);
 		
 	}
 

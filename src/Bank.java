@@ -9,36 +9,45 @@ public class Bank {
 	}
 	
 	public boolean addBranch(String name) {
-		for(int i=0; i<branches.size(); i++) {
-			if(branches.get(i).getName().equals(name)) {
-				branches.add(new Branch(name));
-				System.out.println("New branch added");
-				return true;
-			}
+		if(findBranch(name) < 0) {
+			branches.add(new Branch(name));
+			System.out.println("New branch added");
+			return true;
 		}
-		
+
 		System.out.println("Branch already exists");
 		return false;
 	}
 	
-	public boolean addCustomer(Branch branch, String newCustomer, double initialAmount) {
-		if(branch.addCustomer(newCustomer, initialAmount)) {
+	public boolean addCustomer(String branchName, String newCustomer, double initialAmount) {
+		if(branches.get(findBranch(branchName)).addCustomer(newCustomer, initialAmount)) {
+			System.out.println("New customer " + newCustomer + " added");
 			return true;
 		}
 		
 		return false;
 	}
 	
-	public boolean addTransaction(Branch branch, String customerName, double amount) {
-		if(branch.addTransaction(customerName, amount)) {
+	public boolean addTransaction(String branchName, String customerName, double amount) {
+		if(branches.get(findBranch(branchName)).addTransaction(customerName, amount)) {
 			return true;
 		}
 	
 		return false;
 	}
 	
-	public void listCustomers(Branch branch, boolean listTransactions) {
-		branch.listCustomers(listTransactions);
+	public void listCustomers(String branchName, boolean listTransactions) {
+		branches.get(findBranch(branchName)).listCustomers(listTransactions);
+	}
+	
+	private int findBranch(String name) {
+		for(int i=0; i<branches.size(); i++) {
+			if(branches.get(i).getName().equals(name)) {
+				return i;
+			}
+		}
+		
+		return -1;
 	}
 
 	public String getName() {
