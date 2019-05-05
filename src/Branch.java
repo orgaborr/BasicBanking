@@ -21,9 +21,11 @@ public class Branch {
 	public boolean addTransaction(String name, double amount) {
 		if(findCustomer(name) >= 0) {
 			customers.get(findCustomer(name)).addTransaction(amount);
+			System.out.println("Transaction successful");
 			return true;
 		}
-	
+		
+		System.out.println("Transaction could not be completed");
 		return false;
 	}
 	
@@ -37,10 +39,10 @@ public class Branch {
 		return -1;
 	}
 	
-	public void listCustomers(boolean transactions) {
+	public void listCustomers(boolean listTransactions) {
 		for(int i=0; i<customers.size(); i++) {
 			System.out.println((i+1) + ". " + customers.get(i).getName());
-			if(transactions) {
+			if(listTransactions) {
 				customers.get(i).listTransactions();
 			}
 		}
